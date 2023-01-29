@@ -8,6 +8,8 @@ import { auth } from '../../../firebase/Config';
 import Loader from '../../../Components/Loader/Loader';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const validationSchema = Yup.object().shape({
     name: Yup.string()
@@ -47,7 +49,7 @@ onSubmit={(values, { setSubmitting }) => {
       setSubmitting(false);
   
     toast.success("Registration successful");
-    navigate('/')
+    navigate('/login')
     // ...
   })
   .catch((error) => {
@@ -81,7 +83,6 @@ onSubmit={(values, { setSubmitting }) => {
       <h2>Registar</h2>
     
   <Field type="text" name="name" placeholder="Name" />
-  {/* {errors.name && <div>{errors.name}</div>} */}
   <ErrorMessage name='name' component='div' className={styles.error} />
   </div>
   <div className={styles['form-control']}>
@@ -103,7 +104,7 @@ onSubmit={(values, { setSubmitting }) => {
 <button  className={styles.btn} type="submit" disabled={isSubmitting}>
 Register
 </button>
-<p>Already have an account ? <Link to="/">Login</Link></p>
+<p>Already have an account ? <Link to="/login">Login</Link></p>
 </div>
 <ToastContainer/>
 </Form>

@@ -2,6 +2,7 @@ import {  Route, Routes } from "react-router-dom";
 import { Home , Cart,Contact, Admin,OrderHistory } from "./Pages/Index";
 import {Header , Footer} from './Components/Index'
 import Register from "./Pages/Auth/Register/Register";
+import Login from "./Pages/Auth/Login/Login";
 
 function App() {
   
@@ -16,6 +17,8 @@ function App() {
       <Route path="/admin" element={<Admin/>} />
       <Route path="/contact" element={<Contact/>} />
       <Route path="/register" element={<Register/>} />
+      <Route path="/login" element={<Login/>} />
+
 
 
 

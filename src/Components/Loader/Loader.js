@@ -1,9 +1,9 @@
 import React from "react";
-import { ReactDOM } from "react";
 import { ColorRing } from "react-loader-spinner";
 import  styles from './Loader.module.scss';
+import { ReactDOM } from "react-dom";
 const Loader = () => {
-    return ReactDOM.createPortal ( 
+    return ReactDOM.createPortal( 
         <div className={styles.loader}>
             <ColorRing 
             visible={true}
