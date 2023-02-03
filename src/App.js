@@ -3,6 +3,7 @@ import { Home , Cart,Contact, Admin,OrderHistory } from "./Pages/Index";
 import {Header , Footer} from './Components/Index'
 import Register from "./Pages/Auth/Register/Register";
 import Login from "./Pages/Auth/Login/Login";
+import ResetPassword from "./Pages/Auth/ResetPassword/ResetPassword";
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
       <Route path="/contact" element={<Contact/>} />
       <Route path="/register" element={<Register/>} />
       <Route path="/login" element={<Login/>} />
+      <Route path="reset" element={<ResetPassword/>} />
 
 
 

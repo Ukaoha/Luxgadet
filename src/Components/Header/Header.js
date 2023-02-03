@@ -1,8 +1,16 @@
 import  styles from './Header.module.scss'
 import { Link, NavLink } from 'react-router-dom';
-import {FaShoppingCart, FaTimes} from 'react-icons/fa';
+import {FaShoppingCart, FaTimes, FaUserCircle} from 'react-icons/fa';
 import {RiMenu3Fill} from 'react-icons/ri'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import {  onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from '../../firebase/Config';
+import { useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast,  ToastContainer  } from 'react-toastify';
+
+
+
 
 const logo = (
     <div className={styles.logo}>
@@ -15,6 +23,7 @@ const logo = (
 
 
 )
+
 const cart =(
     <span className={styles.cart}>
     <Link to="/cart">
@@ -31,7 +40,11 @@ const activeLink =(({isActive}) =>
 )
 
 const Header = () => {
+    const navigate =  useNavigate();
+
     const [showMenu , setShowmenu] = useState(false)
+    const [displayName, setDisplayName] = useState("")
+
 
     // show menue
     const toggleMenu = () => {
@@ -41,6 +54,35 @@ const Header = () => {
     const hideMenu = () => {
         setShowmenu(false)
     }
+    // monitor currently signed in user
+    useEffect(()=> {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+              const uid = user.uid;
+              console.log(user.displayName);
+            } else {
+                setDisplayName("");
+
+            }
+          });
+          
+
+    }, [])
+
+    const logoutUser = () => {
+
+        signOut(auth).then(() => {
+            toast.success('logged out successfully')
+            navigate("/" )
+          }).catch((error) => {
+            // An error happened.
+            toast.error(error.message)
+          });
+          
+    }
+
+
+
     return ( 
         <header>
                 <div className={styles.header}>
@@ -82,8 +124,13 @@ const Header = () => {
                     <div className={styles['header-right']} onClick={hideMenu}>
                         <span className={styles.links}>
                             <NavLink to='/login'  className={activeLink}>Login</NavLink>
+                            <a href="#"><FaUserCircle size={16} />
+                            Hi, 👋 {displayName}
+                            </a>
                             <NavLink to='/register'  className={activeLink}>Register</NavLink>
-                            <NavLink to='/order-history'className={activeLink}>Order</NavLink>      
+                            <NavLink to='/order-history'className={activeLink}>Order</NavLink>    
+                            <NavLink to='/'onClick={logoutUser}>Logout</NavLink>      
+  
                         </span>
                         {cart}
                     </div>
@@ -93,6 +140,7 @@ const Header = () => {
                         <RiMenu3Fill size={28} onClick={toggleMenu}/>
                     </div>
                     </div>
+                    <ToastContainer/>
 
         </header>
 

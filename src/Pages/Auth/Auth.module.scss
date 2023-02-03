@@ -1,10 +1,10 @@
 .form-container{
     width: 400px;
     max-width: 700px;
-    margin: 0 auto;
+    margin: 20px auto;
 
     .form-wrapper{
-        margin-top: 30px;
+        padding: 2rem;
         width: 100%;
         border-radius: 2px;
         background-color: hsla(0, 0%, 100%, 1);
@@ -19,9 +19,18 @@
         color: orangered;
 
     }
+    h4{
+        font-size: 2rem;
+        list-style: 5px;
+        font-weight: 100;
+        padding-bottom: 1rem;
+        text-align: center;
+        color: orangered;
+
+    }
+
     form{
         padding: 30px 30px;
-        margin-bottom: 20px;
     }
     .form-control{
         padding: 1rem;
@@ -65,6 +74,27 @@
         display: flex;
         justify-content: flex-start;
         font-size: 14px;
+    }
+    .google{  
+        width: 85%; 
+        margin:  auto;
+
+    .google-btn {
+        display: block;
+        width: 100%;
+        font-size: 14px;
+        outline: none;
+        padding: 8px;
+        background-color: orangered;
+        color: #fff;
+        font-weight: 500;
+        border: none;
+        text-align: center;
+        align-items: center;
+        border-radius: .8rem;
+
+
+    }
     }
 }
 

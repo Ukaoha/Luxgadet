@@ -3,11 +3,16 @@ import { useState } from 'react';
 import * as Yup from 'yup';
 import  styles from '../Auth.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
+import Loader from '../../../Components/Loader/Loader';
+import {signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth } from '../../../firebase/Config';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Loader from '../../../Components/Loader/Loader';
-import {signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../../../firebase/Config';
+import {FaGoogle} from 'react-icons/fa'
+import { GoogleAuthProvider } from "firebase/auth";
+
+
+
 
 
 
@@ -23,12 +28,29 @@ const validationSchema = Yup.object().shape({
     .required('Password is required'),
 
 })
+const provider = new GoogleAuthProvider();
 
 
 
 const Login = () => {
-    const [isLoading , setIsLoading] = useState(false)
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  // login in with google
+  const SignInWithGoogle = ()=> {
+    signInWithPopup(auth, provider)
+    .then((result) => {
+      const user = result.user;
+      toast.success('login successfull');
+      navigate("/")
+      // ...
+    }).catch((error) => {
+      // Handle Errors here.
+      toast.error(error.message)
+    });
+  }
+  
+
+    const [isLoading , setIsLoading] = useState(false);
 
     return ( 
         <>
@@ -44,23 +66,21 @@ onSubmit={(values, { setSubmitting }) => {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    console.log(user);
-    setIsLoading(false)
-      setSubmitting(false);
-  
-    toast.success("login successful");
-    navigate('/cart')
-    
+    setIsLoading(false);
+     setSubmitting(false);
+    toast.success('Login successful');
+    navigate('/cart');
+
+
+
 
     // ...
   })
   .catch((error) => {
     console.log(error.message)
-     setSubmitting(false);
-     toast.error(error)
-
-  
-    setIsLoading(false)
+    setSubmitting(false);
+    setIsLoading(false);
+    toast.error(error.message);
 
   });
 
@@ -93,10 +113,23 @@ onSubmit={(values, { setSubmitting }) => {
 <button  className={styles.btn} type="submit" disabled={isSubmitting}>
 Login
 </button>
-<p>Already have an account ? <Link to="/">Login</Link></p>
+<p>Or</p>
+ 
 </div>
 <ToastContainer/>
 </Form>
+< div className={styles.google} >
+    <button className={styles['google-btn']}   onClick={SignInWithGoogle}  >
+      
+            <span><FaGoogle color="#fff" /> </span> Login with Google
+    </button>
+    <span>
+      <p>Forgotten password?
+        <Link to="/reset"> Reset password</Link>
+      </p>
+    </span>
+ </div>
+
 </div>
 </div>
 </>

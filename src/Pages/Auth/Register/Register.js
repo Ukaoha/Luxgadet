@@ -47,10 +47,11 @@ onSubmit={(values, { setSubmitting }) => {
     console.log(user);
     setIsLoading(false)
       setSubmitting(false);
-  
+
+      navigate('/')
     toast.success("Registration successful");
-    navigate('/login')
-    // ...
+    
+    
   })
   .catch((error) => {
     console.log(error.message)

@@ -1,7 +1,8 @@
 import React from "react";
 import { ColorRing } from "react-loader-spinner";
-import  styles from './Loader.module.scss';
-import { ReactDOM } from "react-dom";
+import styles from './Loader.module.scss';
+import ReactDOM from "react-dom";  // <-- Correct import statement
+
 const Loader = () => {
     return ReactDOM.createPortal( 
         <div className={styles.loader}>
@@ -16,9 +17,7 @@ const Loader = () => {
 
         </div>,
         document.getElementById("loader")
-
-
      );
 }
  
-export default Loader;
+export default Loader
