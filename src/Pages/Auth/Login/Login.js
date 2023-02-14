@@ -8,8 +8,10 @@ import {signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from '../../../firebase/Config';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {FaGoogle} from 'react-icons/fa'
+import {FaFacebook, FaGoogle} from 'react-icons/fa'
 import { GoogleAuthProvider } from "firebase/auth";
+import { FacebookAuthProvider } from "firebase/auth";
+
 
 
 
@@ -29,6 +31,8 @@ const validationSchema = Yup.object().shape({
 
 })
 const provider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
+
 
 
 
@@ -49,6 +53,29 @@ const Login = () => {
     });
   }
   
+
+  // login with facebook
+  const signInWithFacebook = () => {
+
+  signInWithPopup(auth, facebookProvider)
+  .then((result) => {
+    // The signed-in user info.
+    const user = result.user;
+
+    const credential = FacebookAuthProvider.credentialFromResult(result)
+    const accessToken = credential.accessToken;
+    toast.success('login successfull');
+    navigate("/")
+
+
+
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    toast.error(error.message)
+  });
+}
+
 
     const [isLoading , setIsLoading] = useState(false);
 
@@ -118,16 +145,28 @@ Login
 </div>
 <ToastContainer/>
 </Form>
-< div className={styles.google} >
+<div className={styles['google-wrapper']} >
+<div className={styles.google} >
     <button className={styles['google-btn']}   onClick={SignInWithGoogle}  >
       
             <span><FaGoogle color="#fff" /> </span> Login with Google
     </button>
+
+    <div className={styles.google} >
+    <button className={styles['facebook-btn']}   onClick={signInWithFacebook}  >
+      
+      <span><FaFacebook color="#fff" /> </span> Login with facebook
+</button>
+
+    </div>
+
+
     <span>
       <p>Forgotten password?
         <Link to="/reset"> Reset password</Link>
       </p>
     </span>
+ </div>
  </div>
 
 </div>

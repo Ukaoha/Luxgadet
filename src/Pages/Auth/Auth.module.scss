@@ -4,6 +4,7 @@
     margin: 20px auto;
 
     .form-wrapper{
+        margin-top: 100px;
         padding: 2rem;
         width: 100%;
         border-radius: 2px;
@@ -75,25 +76,47 @@
         justify-content: flex-start;
         font-size: 14px;
     }
-    .google{  
-        width: 85%; 
-        margin:  auto;
+    .google-wrapper{
+        width: 100%; 
+        padding: 2rem;
+
+
+    }
+    .google{ 
+
+
 
     .google-btn {
-        display: block;
-        width: 100%;
         font-size: 14px;
         outline: none;
         padding: 8px;
         background-color: orangered;
         color: #fff;
-        font-weight: 500;
+        font-weight: 500;      
+      display: block;
+        width: 100%;
+
         border: none;
         text-align: center;
         align-items: center;
         border-radius: .8rem;
 
 
+    }
+    .facebook-btn{
+        font-size: 14px;
+        margin-top: 20px;
+        outline: none;
+        padding: 8px;
+        background-color: blue;
+        color: #fff;
+        font-weight: 500;       
+        display: block;
+        width: 100%;
+        border: none;
+        text-align: center;
+        align-items: center;
+        border-radius: .8rem;
     }
     }
 }
