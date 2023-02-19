@@ -48,7 +48,7 @@ onSubmit={(values, { setSubmitting }) => {
     setIsLoading(false)
       setSubmitting(false);
 
-      navigate('/')
+      navigate('/cart')
     toast.success("Registration successful");
     
     

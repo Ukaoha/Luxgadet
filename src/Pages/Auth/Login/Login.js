@@ -34,7 +34,7 @@ const provider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 
 
-
+  
 
 const Login = () => {
   const navigate = useNavigate();
@@ -45,35 +45,33 @@ const Login = () => {
     .then((result) => {
       const user = result.user;
       toast.success('login successfull');
-      navigate("/")
+      navigate("/cart")
       // ...
     }).catch((error) => {
       // Handle Errors here.
       toast.error(error.message)
     });
   }
-  
+    // login with facebook
 
-  // login with facebook
   const signInWithFacebook = () => {
 
-  signInWithPopup(auth, facebookProvider)
-  .then((result) => {
-    // The signed-in user info.
-    const user = result.user;
+    signInWithPopup(auth, facebookProvider)
+    .then((result) => {
+      // The signed-in user info.
+      const user = result.user;
+  
+      toast.success('login successfull');
+      navigate("/cart")
+  
+  
+  
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      toast.error(error.message)
+    });
 
-    const credential = FacebookAuthProvider.credentialFromResult(result)
-    const accessToken = credential.accessToken;
-    toast.success('login successfull');
-    navigate("/")
-
-
-
-  })
-  .catch((error) => {
-    // Handle Errors here.
-    toast.error(error.message)
-  });
 }
 
 
@@ -162,7 +160,7 @@ Login
 
 
     <span>
-      <p>Forgotten password?
+      <p>Forgotten password ?
         <Link to="/reset"> Reset password</Link>
       </p>
     </span>

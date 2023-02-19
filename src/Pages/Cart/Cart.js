@@ -1,8 +1,14 @@
-import styles from './Cart.module.scss'
 const Cart = () => {
     return (  
-        <h1>cart</h1>
+        <h2>cart</h2>
     );
 }
  
 export default Cart;
+
+
+
+
+
+
+// import styles from './Cart.module.scss'

@@ -20,7 +20,7 @@ const logo = (
 
 const Footer = () => {
     return ( 
-        <div className={styles.footer}>
+        <footer>
             <div className={styles['main-footer']}>
             
                         {logo}
@@ -36,11 +36,13 @@ const Footer = () => {
         
     
             <div>
+                <div className={['footer-date']}>
           &copy {year} all rights reserved 
+          </div>
     </div>
      
         </div>
-        </div>
+        </footer>
         
     
      );

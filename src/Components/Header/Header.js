@@ -146,15 +146,19 @@ const Header = () => {
 
                     <div className={styles['header-right']} onClick={hideMenu}>
                         <span className={styles.links}>
-                            <ShowOnLogOut>
+                            {/* <ShowOnLogOut>
                             <NavLink to='/login'  className={activeLink}>Login</NavLink>
-                            </ShowOnLogOut>
+                            </ShowOnLogOut> */}
                             <ShowOnLogin>
                             <a href="#" style={{color: '#ff7722'}}><FaUserCircle size={16}  />
                             Hi,👋 {displayName}
                             </a>
                             </ShowOnLogin>
-                            {/* <NavLink to='/register'  className={activeLink}>Register</NavLink> */}
+                            <ShowOnLogOut>
+
+                            <NavLink to='/register'  className={activeLink}>Sign up</NavLink>
+                            </ShowOnLogOut>
+
                             <ShowOnLogin>
                                      <NavLink to='/order-history'className={activeLink}>Order</NavLink>
                              </ShowOnLogin>

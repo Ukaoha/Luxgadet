@@ -12,7 +12,9 @@ const Loader = () => {
             height="80"
             width="80"
             style={{
-                background:"linear-gradiant(to right , white ,#0083b0)"
+                // background:"linear-gradiant(to right , white ,#0083b0)"
+        background:' orangered'
+        // background: ""
             }}
             />
             </div>
