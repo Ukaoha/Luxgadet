@@ -11,6 +11,7 @@ import { toast,  ToastContainer  } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { REMOVE_ACTIVE_USER, SET_ACTIVE_USER } from '../../Redux/Slice/authSlice';
 import ShowOnLogin, { ShowOnLogOut } from '../HiddenLinks/HiddenLinks';
+import AdimnRoute, { AdimnRouteLink } from '../AdimnRoute/AdminRoute';
 
 
 
@@ -130,6 +131,14 @@ const Header = () => {
                             <li className={styles['logo-mobile']}>
                                 {logo}
                                 <FaTimes size={22} color="#ff" onClick={hideMenu} />
+                            </li>
+                            <li>
+                                <AdimnRouteLink>
+                                    <Link to={'/admin/home'}>
+                                      <button className='--btn--btn-primary'>Admin</button>
+                                      </Link>
+                             </AdimnRouteLink>
+
                             </li>
                             <li>
                                 {/* setting active link */}
