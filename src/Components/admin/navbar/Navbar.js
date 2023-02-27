@@ -42,11 +42,12 @@ const Navbar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='add-product' className={activeLink}>
+                        <NavLink to='add-product/ADD' className={activeLink}>
                             Add Product
 
                         </NavLink>
                     </li>
+
 
                 </ul>
             </nav>
