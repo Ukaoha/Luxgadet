@@ -12,7 +12,7 @@ import  {selectProducts} from '../../../Redux/Slice/ProductSlice';
 
 const intialState = {
 
-  productName: '',
+  name: '',
   imageUrl: '',
   category: '',
   price: 0,
@@ -51,6 +51,7 @@ const AddProduct = () => {
          {...intialState},
           productEdit)
           return newState
+
     });
     // const [product, setProduct] = useState({
     // ...intialState
@@ -126,7 +127,7 @@ const AddProduct = () => {
 
         try{ 
           const docRef =  addDoc(collection(db, "products"), {
-            productName: product.productName,
+            name: product.name,
             imageUrl: product.imageUrl,
             category: product.category,
             price:Number(product.price),
@@ -163,7 +164,7 @@ const AddProduct = () => {
 
         try{
            setDoc(doc(db, "products", id), {
-            productName: product.productName,
+            name: product.name,
             imageUrl: product.imageUrl,
             category: product.category,
             price:Number(product.price),
@@ -204,7 +205,7 @@ const AddProduct = () => {
     <div className={styles['form-control']}>
       <h2>{detectForm(id, ' Add New Product', 'Edit new product' )}</h2>
       <label> Product Name</label>
-      <input type='text' name="productName" value={product.productName}  onChange={(e) => handleInputChange(e)}  required />
+      <input type='text' name="name" value={product.name}  onChange={(e) => handleInputChange(e)}  required />
 
 
       </div>

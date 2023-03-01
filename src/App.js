@@ -5,6 +5,7 @@ import Register from "./Pages/Auth/Register/Register";
 import Login from "./Pages/Auth/Login/Login";
 import ResetPassword from "./Pages/Auth/ResetPassword/ResetPassword";
 import AdimnRoute from "./Components/AdimnRoute/AdminRoute";
+import ProductDetails from "./Components/Products/productDetails/ProductDetails";
 
 function App() {
   
@@ -25,6 +26,8 @@ function App() {
       <Admin />
       </AdimnRoute>
       } />
+            <Route path="/product-details/:id" element={<ProductDetails/>} />
+
 
 
 
