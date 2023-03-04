@@ -1,17 +1,41 @@
 import { doc, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {  Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { db } from '../../../firebase/Config';
+import { ADD_TO_CART, CALCULATE_TOTAL_QUANTITY, DECREASE_CART, selectCartItems } from '../../../Redux/Slice/cartSlice';
 import Loader from '../../Loader/Loader';
 import styles from './ProductDetails.module.scss'
+
 
 
 const ProductDetails = () => {
     const {id} = useParams()
     const [product, setProduct] = useState(null);
-    
+    const dispatch = useDispatch()
 
+    const cartItems = useSelector(selectCartItems)
+
+    const cart = cartItems.find((cart) => cart.id === id)
+
+
+    const  addTOCart = () => {
+        dispatch(ADD_TO_CART(product))
+        dispatch(CALCULATE_TOTAL_QUANTITY(product))
+
+    }
+    const  decreaseCart = () => {
+        dispatch(DECREASE_CART(product))
+        dispatch(CALCULATE_TOTAL_QUANTITY(product))
+
+    }
+
+    const isCartAdded = cartItems.findIndex((cart) => {
+        return cart.id === id
+    })
+
+    
         
 
     const getProduct = async () => {
@@ -65,15 +89,31 @@ if (docSnap.exists()) {
                             <b>SKU </b>{product.brand}
                         </p>
                     <div className={styles.count}>
-                        <button className='--btn'>-</button>
-                        <p><b>1</b>  </p>
+                        {isCartAdded < 0 ? (
+                            <button className='--btn--btn-danger' onClick={() => addTOCart(product)}>Add to cart</button>
 
-                        <button className='--btn'>+</button>
+                        ) :(
+                        
+                            <>
+                            
+                        
+                         <button className='--btn'  onClick={() => decreaseCart(product)}>-</button>
+                         <p><b>{cart.cartQuantity}</b>  </p>
+                         {/* <p><b>{cart ? cart.cartQuantity : 0}</b>  </p> */}
+
+
+                        <button className='--btn'  onClick={() => addTOCart(product)}>+</button>
+
+                        
+                        {/* <button className='--btn--btn-danger' onClick={() => addTOCart(product)}>Add to cart</button> */}
+                        </>
+                     )}  
 
                         </div>  
-                        <button className='--btn--btn-danger'>Add to cart</button>
+                       
 
                     </div>
+
 
                 </div>
                 }
