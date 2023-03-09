@@ -1,15 +1,17 @@
 import { useEffect } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { ADD_TO_CART, CALCULATE_SUBTOTAL, CALCULATE_TOTAL_QUANTITY, CLEAR_CART, DECREASE_CART, REMOVE_FROM_CART, selectCartItems, selectCartToatalAmount, selectCartTotalQuantity } from '../../Redux/Slice/cartSlice';
+import { Link, useNavigate } from 'react-router-dom';
+import { selectIsLoggedIn } from '../../Redux/Slice/authSlice';
+import { ADD_TO_CART, CALCULATE_SUBTOTAL, CALCULATE_TOTAL_QUANTITY, CLEAR_CART, DECREASE_CART, REMOVE_FROM_CART, SAVE_URL, selectCartItems, selectCartToatalAmount, selectCartTotalQuantity, selectPreviousUrl } from '../../Redux/Slice/cartSlice';
 import styles from './Cart.module.scss'
-
 const Cart = () => {
     const cartItems = useSelector(selectCartItems)
     const cartTotalAmount = useSelector(selectCartToatalAmount);
     const cartTotalQuantity = useSelector(selectCartTotalQuantity)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const isLoggedIn = useSelector(selectIsLoggedIn)
 
 // INCREASE CART
     const increaseCart = (cart) => {
@@ -33,18 +35,38 @@ const Cart = () => {
     useEffect(() => {
         dispatch(CALCULATE_SUBTOTAL())
         dispatch(CALCULATE_TOTAL_QUANTITY())
+        dispatch(SAVE_URL(''))
+
     }, [dispatch, cartItems]);
+
+    const url = window.location.href;
+    
+    const checkOut = () => {
+        if(isLoggedIn) {
+            navigate('/checkout-details')
+
+        }else{
+            dispatch(SAVE_URL(url))
+            navigate('/login')
+        }
+
+    }
+    
+    
     return (  
         <section>
             <div className={`container ${styles.table}`}>
                 <h2>Shopping Cart</h2>
                 {!cartItems || cartItems.length === 0 ? (
                     <>
-                    <p>Your cart is empty</p>
+                    <div className={styles.empt}>
+                        <p>Your cart is empty</p>
                     <br></br>
                     <div>
                         <Link to='/#products'>&larr; Continue shoping </Link>
                     </div>
+                    </div>
+
                     </>
                 ) : (
                     <>
@@ -109,7 +131,7 @@ const Cart = () => {
                             <h3>{`#${cartTotalAmount.toFixed(2)}`}</h3>
                         </div>
                         <p>Tax Shopping calculated at checkout</p>
-                        <button className='--btn --btn-primary --block'>
+                        <button className='--btn --btn-primary --block' onClick={checkOut}>
                             Checkout
 
                         </button>

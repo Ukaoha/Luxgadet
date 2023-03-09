@@ -11,8 +11,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import {FaFacebook, FaGoogle} from 'react-icons/fa'
 import { GoogleAuthProvider } from "firebase/auth";
 import { FacebookAuthProvider } from "firebase/auth";
-
-
+import { useSelector } from 'react-redux';
+import { selectPreviousUrl } from '../../../Redux/Slice/cartSlice';
 
 
 
@@ -38,6 +38,17 @@ const facebookProvider = new FacebookAuthProvider();
 
 const Login = () => {
   const navigate = useNavigate();
+  
+  // redirect
+  const previousUrl = useSelector(selectPreviousUrl)
+
+  const redirectUser = () => {
+    if(previousUrl.includes('cart')){
+      navigate('/cart')
+    } else{
+      navigate('/')
+    }
+  }
 
   // login in with google
   const SignInWithGoogle = ()=> {
@@ -45,7 +56,9 @@ const Login = () => {
     .then((result) => {
       const user = result.user;
       toast.success('login successfull');
-      navigate("/cart")
+      redirectUser()
+
+
       // ...
     }).catch((error) => {
       // Handle Errors here.
@@ -62,7 +75,7 @@ const Login = () => {
       const user = result.user;
   
       toast.success('login successfull');
-      navigate("/cart")
+      redirectUser()
   
   
   
@@ -94,8 +107,7 @@ onSubmit={(values, { setSubmitting }) => {
     setIsLoading(false);
      setSubmitting(false);
     toast.success('Login successful');
-    navigate('/cart');
-
+    redirectUser()
 
 
 

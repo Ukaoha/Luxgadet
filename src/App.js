@@ -6,6 +6,8 @@ import Login from "./Pages/Auth/Login/Login";
 import ResetPassword from "./Pages/Auth/ResetPassword/ResetPassword";
 import AdimnRoute from "./Components/AdimnRoute/AdminRoute";
 import ProductDetails from "./Components/Products/productDetails/ProductDetails";
+import CheckoutDetails from "./Pages/Checkout/CheckoutDetails";
+import Checkout from "./Pages/Checkout/Checkout";
 
 function App() {
   
@@ -27,6 +29,10 @@ function App() {
       </AdimnRoute>
       } />
             <Route path="/product-details/:id" element={<ProductDetails/>} />
+            <Route path="/checkout-details" element={<CheckoutDetails/>} />
+            <Route path="/checkout" element={<Checkout/>} />
+
+
 
 
 

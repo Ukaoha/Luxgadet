@@ -1,0 +1,56 @@
+// .search{
+//     width: 100%;
+//     border: 1px solid rgba(255,255,255,.2);
+//     border-radius: 12px;
+  
+//     input{
+//         padding: 0.8rem 1rem;
+//         width: 90%;
+//         border-radius: 12px;
+
+//         input:focus{
+//             outline: none;
+//             background: transparent;
+          
+//           }
+//            input::placeholder{
+//             color: #C7C7C7;
+//             font-family: inherit;
+          
+//           }
+          
+      
+//     }
+//     .icon{
+//         cursor: pointer;
+//         right: 10px;
+      
+//       }
+
+// }
+
+.search {
+  margin: 5px 0;
+  position: relative;
+  flex: 1;
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+  }
+
+  input[type="text"] {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 300;
+    padding: 1rem;
+    padding-left: 3rem;
+    margin: 1rem auto;
+    width: 100%;
+    border: 1px solid #777;
+    border-radius: .8rem;
+    outline: none;
+  }
+}

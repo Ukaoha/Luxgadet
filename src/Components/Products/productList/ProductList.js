@@ -49,7 +49,9 @@ const ProductList = ({products}) => {
 
             </div>
             <div>
+                <div className={styles.search}>
                 <Search value={search} onChange={(e) => setSearch(e.target.value)} />
+                </div>
             </div>
             <div className={styles.sort}>
                 <label>Sort By</label>

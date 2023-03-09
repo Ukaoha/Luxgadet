@@ -3,6 +3,7 @@ import { FaCogs } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import UseFetchCollection from "../../customHook.js/useFetchCollection";
 import { GET_PRICE_RANGE, selectProducts, STORE_PRODUCTS } from "../../Redux/Slice/ProductSlice";
+import Load from "../Loader/Load/Load";
 import Loader from "../Loader/Loader";
 import ProductFilter from "./productFilter/productFilter";
 import ProductList from "./productList/ProductList";
@@ -43,7 +44,7 @@ const Product = () => {
 
         <div className={styles.content}>
             {isLoading ? (
-                 <Loader/> 
+                 <Load/> 
             ) : (
                 <ProductList products={products}/>
 

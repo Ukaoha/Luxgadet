@@ -2,11 +2,19 @@
     padding: 5px;
     width: 100%;
     overflow-x: auto;
+
+    .empt{
+      text-align: center;
+      width: 80%;
+      margin:0 auto;
+    }
+
   
     table {
       border-collapse: collapse;
       width: 100%;
       font-size: 1.4rem;
+
   
       thead {
         border-top: 2px solid var(--light-blue);

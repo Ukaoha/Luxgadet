@@ -112,7 +112,10 @@ const Header = () => {
                 email: user.email, 
                 userName: user.displayName ? user.displayName : displayName,
                 userID: user.uid, 
+
               }))
+              console.log(`user email ${user.email}`);
+
 
             } else {
                 setDisplayName("");
