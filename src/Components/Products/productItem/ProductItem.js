@@ -33,14 +33,15 @@ const ProductItem = ({product, grid, id, name,desc,imageUrl,price}) => {
             </Link>
             <div className={styles.content}>
                 <div  className={styles.details}>
-                    <p>{`${price}`}</p>
+                    <p>{price.toLocaleString('en-US', {style: 'currency', currency: 'NGN'})}</p>
+
                     {/* <h4>{shortenText(name , 18)}</h4> */}
                     <h4>{shortenText(name ? name : '', 18)}</h4>
 
 
                 </div>
                 {!grid && <p className={styles.desc}>{shortenText(desc , 200)}</p>}
-                <button className='--btn--btn--danger' onClick={() => addToCart(product)}>Add to cart</button>
+                <button className='--btn  --btn-danger ' onClick={() => addToCart(product)}>Add to cart</button>
 
             </div>
 

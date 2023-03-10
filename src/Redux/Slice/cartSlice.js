@@ -6,7 +6,8 @@ const initialState = {
       ? JSON.parse(localStorage.getItem('cartItems'))
       : [],
     cartTotalQuantity: 0,
-    cartTotalAmount: 0,
+    // cartTotalAmount: 0,
+    cartTotalAmount: 0, // initialize cartTotalAmount to 0
     previousUrl: '',
   }
   
@@ -78,18 +79,34 @@ const cartSlice = createSlice({
         CALCULATE_SUBTOTAL:(state , action) => {
             const arry = []
             state.cartItems.map((item) => {
-                const { price, cartQuantity} = item
+                const {price, cartQuantity} = item
                 const  cartItemAmount =  price * cartQuantity
+        
+
                 return arry.push(cartItemAmount)
             })
 
             const totalAmount = arry.reduce((a , b) => {
                 return a + b
             }, 0)
+
             state.cartTotalAmount = totalAmount
+
+            // .toLocaleString('en-US', {
+            //     style: 'currency',
+            //     currency: 'NGN'
+            //   });
+            // state.cartTotalAmount = totalAmount
+            
+
+
+            console.log('cartTotalAmount:', state.cartTotalAmount)
+
+
             
 
         },
+        
         CALCULATE_TOTAL_QUANTITY:(state , action) => {
             const arry = []
             state.cartItems.map((item) => {
@@ -119,6 +136,7 @@ export const selectCartItems = (state) => state.cart.cartItems
 export const selectCartTotalQuantity = (state) => state.cart.cartTotalQuantity
 export const selectCartToatalAmount = (state) => state.cart.cartTotalAmount
 export const selectPreviousUrl  = (state) => state.cart.previousUrl
+
 
 
 

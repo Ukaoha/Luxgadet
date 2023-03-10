@@ -1,0 +1,27 @@
+.buttons{
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+    margin: 0 auto;
+
+    .paystack{
+        width: 100%;
+        padding: 1rem;
+        margin-top: 10px;
+        border: none;
+        color: #fff;
+        background-color: var(--light-blue);
+    }   
+     .flutterwave{
+        width: 100%;
+        padding: 1rem;
+        margin-top: 10px;
+        border: none;
+        color: #fff;
+        background-color: orangered;
+    }
+
+
+
+
+}

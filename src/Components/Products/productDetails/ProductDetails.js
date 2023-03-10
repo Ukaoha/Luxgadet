@@ -80,7 +80,7 @@ if (docSnap.exists()) {
                     </div>
                     <div className={styles.title}>
                         <h3>{product.name}</h3>
-                        <p className={styles.price}>{`#${product.price}`}</p>
+                        <p className={styles.price}>{`#${product.price }`}</p>
                         <p>{product.desc}</p>
                         <p>
                             <b>SKU </b>{product.id}
@@ -99,13 +99,11 @@ if (docSnap.exists()) {
                         
                          <button className='--btn'  onClick={() => decreaseCart(product)}>-</button>
                          <p><b>{cart.cartQuantity}</b>  </p>
-                         {/* <p><b>{cart ? cart.cartQuantity : 0}</b>  </p> */}
 
 
                         <button className='--btn'  onClick={() => addTOCart(product)}>+</button>
 
                         
-                        {/* <button className='--btn--btn-danger' onClick={() => addTOCart(product)}>Add to cart</button> */}
                         </>
                      )}  
 

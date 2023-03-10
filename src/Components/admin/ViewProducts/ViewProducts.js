@@ -105,7 +105,8 @@ const ViewProducts = () => {
                                 <td><img src={imageUrl} alt={name}style={{width: '100px'}} /> </td>
                                 <td>{name}</td>
                                 <td>{category}</td>
-                                <td>{`#${price}`}</td>
+                                <td>{price.toLocaleString('en-US', {style: 'currency', currency: 'NGN'})}</td>
+
                                 <td>{category}</td>
                                 <td className={styles.icons}>
                                     <Link to={`/admin/add-product/${id}`}>

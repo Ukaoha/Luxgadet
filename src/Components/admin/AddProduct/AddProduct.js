@@ -130,7 +130,7 @@ const AddProduct = () => {
             name: product.name,
             imageUrl: product.imageUrl,
             category: product.category,
-            price:Number(product.price),
+            price:Number(product.price)          ,
             desc: product.desc,
             brand: product.brand,
             createdAt: Timestamp.now().toDate()
@@ -167,13 +167,14 @@ const AddProduct = () => {
             name: product.name,
             imageUrl: product.imageUrl,
             category: product.category,
-            price:Number(product.price),
+            price:Number(product.price)           ,
             desc: product.desc,
             brand: product.brand,
             createdAt: productEdit.createdAt,
             editedAt: Timestamp.now().toDate()
 
           });
+
           setIsLoading(false)
           toast.success('product edited successfully ')
           navigate('/admin/all-products')

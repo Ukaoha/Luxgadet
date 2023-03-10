@@ -28,25 +28,32 @@ const CheckoutSummary = () => {
                 </>
 
             ) : (
-                <div>
+                <div className={styles.wrappper}>
                     <p><b>{`Cart item(s): ${cartTotalQuantity}`}</b></p>
                     <div className={styles.text}>
                         <h4>Subtotal</h4>
-                        <h3>{cartTotalAmount.toFixed(2)}</h3>
+                        <h3>{cartTotalAmount}</h3>
 
 
                     </div>
                     <div>
 
                         {cartItems.map((item, Index) => {
-                            const {id , name, price, cartQuantity} = item
+                            const {id , name, price, cartQuantity , imageUrl} = item
                             return(
-                                <div key={id} className={styles.card}>
-                                    <h4>Product : {name}</h4>
+                                <div key={id} >
+                                 <div  className={styles.card}>
 
-                                    <p>Quantity: {cartQuantity}</p>
-                                    <p>Unit price :{price}</p>
-                                    <p>Set Price: {price * cartQuantity} </p>
+
+                                    <img src={imageUrl}/>
+                                      <h4>{name}</h4>
+                                      </div>
+                                      <div className={styles.desc}> 
+                                    <p>Quantity: <span> {cartQuantity}</span></p>
+                                    <p>Unit price <span>{price.toLocaleString('en-US', {style: 'currency', currency: 'NGN'})}</span></p>
+                                    <p>Set Price: <span>{(price * cartQuantity).toLocaleString('en-US', {style: 'currency', currency: 'NGN'})}</span> </p>
+                                    </div>
+
 
 
                                 </div>

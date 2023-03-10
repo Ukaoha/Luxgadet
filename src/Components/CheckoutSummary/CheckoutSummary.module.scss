@@ -1,0 +1,47 @@
+.wrappper{
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+    // border: 1px solid var(--light-blue);
+    margin-bottom: 5px;
+    margin: 0 auto;
+
+
+
+.card{
+    display: flex;
+    justify-content: space-between;
+
+  }
+  .desc{
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+
+}
+
+  h4 {
+    font-weight: 100;
+    font-size: 1.5rem;
+    align-items: center;
+  }
+  img{
+    width: 100px;
+  }
+  p{
+    display: flex;
+    justify-content: space-between;
+    padding: .8rem;
+
+  }
+  
+  .text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h3 {
+      color: var(--color-danger);
+    }
+     }
+  
+}

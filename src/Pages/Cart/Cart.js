@@ -12,6 +12,7 @@ const Cart = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const isLoggedIn = useSelector(selectIsLoggedIn)
+    console.log(cartTotalAmount)
 
 // INCREASE CART
     const increaseCart = (cart) => {
@@ -51,10 +52,13 @@ const Cart = () => {
         }
 
     }
+
+
+
     
-    
+    console.log(cartTotalAmount)
     return (  
-        <section>
+        <div className='section'>
             <div className={`container ${styles.table}`}>
                 <h2>Shopping Cart</h2>
                 {!cartItems || cartItems.length === 0 ? (
@@ -95,7 +99,9 @@ const Cart = () => {
                                             <p><b>{name}</b></p>
                                             <img src={imageUrl} alt={name} style={{width: '100px'}} />
                                         </td>
-                                        <td>{price}</td>
+                                        {/* <td>{price}</td> */}
+                                        <td>{price.toLocaleString('en-US', {style: 'currency', currency: 'NGN'})}</td>
+
                                         <td>
                                             <div className={styles.count}>
                                                 <button className='--btn ' onClick={() => decreaseCart(cart)}>-</button>
@@ -105,7 +111,10 @@ const Cart = () => {
                                             </div>
                                         </td>
                                         <td>
-                                            {(price * cartQuantity ).toFixed(2)}
+                                        {(price * cartQuantity).toLocaleString('en-US', {style: 'currency', currency: 'NGN'})}
+
+
+
                                         </td>
                                         <td className={styles.icons}><FaTrashAlt size={18} color='red'
                                         onClick={() => removeFromCart(cart)}
@@ -118,33 +127,34 @@ const Cart = () => {
                         </tbody>
                     </table>
                     <div className={styles.summary}> 
-                    <button className='--btn --btn-danger' 
+                    <a className='--btn --btn-danger' 
                     onClick={clearCart}
-                    >Clear cart</button>
+                    >Clear cart</a>
                     <div className={styles.checkout}>
 
-                        <Link to='/#products'>&larr; Continue Shopping </Link>
+                        <Link className={styles.continue} to='/#products'>&larr; Continue Shopping </Link>
                     <div className={styles.card}>
-                        <p>{`Card item(s): ${cartTotalQuantity}`}</p>
-                        <div className={styles.text}>
-                            <h4>Subtotal :</h4>
-                            <h3>{`#${cartTotalAmount.toFixed(2)}`}</h3>
-                        </div>
-                        <p>Tax Shopping calculated at checkout</p>
-                        <button className='--btn --btn-primary --block' onClick={checkOut}>
-                            Checkout
+                        <p className={styles.p}>Card item(s): <span>{` ${cartTotalQuantity}`}</span></p>
+                      <p className={styles.p}>Subtotal: <span>{`₦ ${cartTotalAmount.toFixed(2)}`}</span></p>
+
+                        
+                        <p className={styles.tax}>Tax Shopping calculated at checkout</p>
+                        <button className=' --btn --btn-primary --block' onClick={checkOut}>
+                          Checkout
 
                         </button>
+                        </div>
+                        </div>
 
                     </div>
-                    </div>
-                    </div>
+                    {/* </div> */}
 
                     </>
 
                 )}
             </div>
-        </section>
+        </div>
+
     );
 }
  
